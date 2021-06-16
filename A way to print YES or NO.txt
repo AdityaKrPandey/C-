@@ -12,7 +12,9 @@ if (CONDITION)
 else
   cout << no_message << "\n";
 
-The message string contains two asciiz strings glued together (the "no" part starts at the offset 0 and the "yes" part starts at the offset 3). Then we can see that it's possible to remove the "if" branch and just print message + 3 * CONDITION, which will evaluate to either message + 0 or message + 3 depending on the CONDITION variable. And finally it's possible to get rid of the "message" variable altogether and just use the string literal directly.
+The message string contains two asciiz strings glued together (the "no" part starts at the offset 0 and the "yes" part starts at the offset 3). Then we can see that it's possible
+to remove the "if" branch and just print message + 3 * CONDITION, which will evaluate to either message + 0 or message + 3 depending on the CONDITION variable. And finally it's
+possible to get rid of the "message" variable altogether and just use the string literal directly.
 
 Another similar single-liner trick is indexing an array of strings with two elements:
 
