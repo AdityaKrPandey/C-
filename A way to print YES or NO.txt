@@ -1,0 +1,19 @@
+
+cout << "NO\0YES" + 3 * CONDITION << '\n';
+
+
+It basically works as something like this:
+
+const char *message = "NO\0YES";
+const char *no_message = message + 0;
+const char *yes_message = message + 3;
+if (CONDITION)
+  cout << yes_message << "\n";
+else
+  cout << no_message << "\n";
+
+The message string contains two asciiz strings glued together (the "no" part starts at the offset 0 and the "yes" part starts at the offset 3). Then we can see that it's possible to remove the "if" branch and just print message + 3 * CONDITION, which will evaluate to either message + 0 or message + 3 depending on the CONDITION variable. And finally it's possible to get rid of the "message" variable altogether and just use the string literal directly.
+
+Another similar single-liner trick is indexing an array of strings with two elements:
+
+cout << (const char *[]){"NO\n", "YES\n"}[CONDITION];
